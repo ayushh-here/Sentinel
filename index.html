@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel - Government Disaster Monitoring System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-brand">
+                <div class="brand-icon">🛡️</div>
+                <h1 class="brand-title">SENTINEL</h1>
+                <span class="brand-subtitle">Disaster Monitoring System</span>
+            </div>
+            <nav class="header-nav">
+                <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+                <button class="nav-btn" data-section="alerts">Live Alerts</button>
+                <button class="nav-btn" data-section="reports">Citizen Reports</button>
+                <button class="nav-btn" data-section="predictions">Weather & AI</button>
+                <button class="nav-btn" data-section="response">Emergency Response</button>
+                <button class="nav-btn" data-section="guidelines">Guidelines & SOS</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <h2>Control Dashboard</h2>
+                
+                <!-- Statistics Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card critical">
+                        <div class="stat-value" id="activeAlerts">3</div>
+                        <div class="stat-label">Active Alerts</div>
+                        <div class="stat-trend">+2 from last hour</div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-value" id="verifiedReports">1</div>
+                        <div class="stat-label">Verified Reports</div>
+                        <div class="stat-trend">Real-time verification</div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-value" id="deployedTeams">1</div>
+                        <div class="stat-label">Teams Deployed</div>
+                        <div class="stat-trend">2 on standby</div>
+                    </div>
+                    <div class="stat-card info">
+                        <div class="stat-value" id="affectedCitizens">90K</div>
+                        <div class="stat-label">Affected Citizens</div>
+                        <div class="stat-trend">Across 3 regions</div>
+                    </div>
+                </div>
+
+                <!-- Main Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <!-- Interactive Map -->
+                    <div class="dashboard-card map-card">
+                        <div class="card-header">
+                            <h3>Live Disaster Map</h3>
+                            <button class="btn btn--sm btn--outline">Full Screen</button>
+                        </div>
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <div class="map-marker critical" style="top: 30%; left: 20%;" data-alert="ALT001">📍</div>
+                                <div class="map-marker high" style="top: 50%; left: 60%;" data-alert="ALT002">📍</div>
+                                <div class="map-marker medium" style="top: 70%; left: 80%;" data-alert="ALT003">📍</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activities -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Recent Activities</h3>
+                            <span class="live-indicator">●</span>
+                        </div>
+                        <div class="activity-feed" id="activityFeed">
+                            <div class="activity-item">
+                                <div class="activity-time">14:45</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">New Citizen Report</div>
+                                    <div class="activity-desc">Flood reported in Andheri, Mumbai</div>
+                                </div>
+                                <span class="status status--success">Verified</span>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-time">14:30</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Critical Alert</div>
+                                    <div class="activity-desc">IoT sensors detect rising water levels</div>
+                                </div>
+                                <span class="status status--error">Active</span>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-time">13:45</div>
+                                <div class="activity-content">
+                                    <div class="activity-title">AI Prediction</div>
+                                    <div class="activity-desc">Earthquake activity predicted in Delhi NCR</div>
+                                </div>
+                                <span class="status status--warning">Monitoring</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Quick Actions</h3>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="action-btn critical">Broadcast Alert</button>
+                            <button class="action-btn">Deploy Team</button>
+                            <button class="action-btn">Send SOS</button>
+                            <button class="action-btn">Update Status</button>
+                        </div>
+                    </div>
+
+                    <!-- Weather Overview -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Weather Overview</h3>
+                        </div>
+                        <div class="weather-grid">
+                            <div class="weather-item">
+                                <div class="weather-label">IoT Sensors</div>
+                                <div class="weather-value">1,200</div>
+                            </div>
+                            <div class="weather-item">
+                                <div class="weather-label">AI Accuracy</div>
+                                <div class="weather-value">89%</div>
+                            </div>
+                            <div class="weather-item">
+                                <div class="weather-label">Weather Stations</div>
+                                <div class="weather-value">450</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Alerts Section -->
+        <section id="alerts" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Live Alerts</h2>
+                    <div class="alert-filters">
+                        <select class="form-control filter-select">
+                            <option value="all">All Severities</option>
+                            <option value="critical">Critical</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                        </select>
+                        <select class="form-control filter-select">
+                            <option value="all">All Types</option>
+                            <option value="flood">Flood</option>
+                            <option value="earthquake">Earthquake</option>
+                            <option value="cyclone">Cyclone</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="alerts-grid" id="alertsGrid">
+                    <!-- Alert cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Citizen Reports Section -->
+        <section id="reports" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Citizen Reports</h2>
+                    <div class="reports-stats">
+                        <span class="stat-badge success">1 Verified</span>
+                        <span class="stat-badge warning">1 Pending</span>
+                        <span class="stat-badge error">1 Rejected</span>
+                    </div>
+                </div>
+
+                <div class="reports-grid" id="reportsGrid">
+                    <!-- Report cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Weather & AI Predictions Section -->
+        <section id="predictions" class="section">
+            <div class="container">
+                <h2>Weather & AI Predictions</h2>
+                
+                <div class="predictions-grid">
+                    <div class="prediction-card">
+                        <div class="card-header">
+                            <h3>AI Risk Assessment</h3>
+                            <span class="accuracy-badge">89% Accuracy</span>
+                        </div>
+                        <div class="chart-container" style="position: relative; height: 300px;">
+                            <canvas id="riskChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="prediction-card">
+                        <div class="card-header">
+                            <h3>IoT Sensor Data</h3>
+                            <span class="sensor-count">1,200 Active</span>
+                        </div>
+                        <div class="sensor-grid">
+                            <div class="sensor-item">
+                                <div class="sensor-label">Water Level</div>
+                                <div class="sensor-value critical">Critical</div>
+                            </div>
+                            <div class="sensor-item">
+                                <div class="sensor-label">Seismic Activity</div>
+                                <div class="sensor-value warning">Moderate</div>
+                            </div>
+                            <div class="sensor-item">
+                                <div class="sensor-label">Wind Speed</div>
+                                <div class="sensor-value success">Normal</div>
+                            </div>
+                            <div class="sensor-item">
+                                <div class="sensor-label">Precipitation</div>
+                                <div class="sensor-value info">Light</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Response Section -->
+        <section id="response" class="section">
+            <div class="container">
+                <h2>Emergency Response</h2>
+                
+                <div class="response-grid">
+                    <div class="response-card">
+                        <div class="card-header">
+                            <h3>Response Teams</h3>
+                            <span class="team-summary">1 Deployed, 2 Standby</span>
+                        </div>
+                        <div class="teams-list" id="teamsList">
+                            <!-- Team items will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="response-card">
+                        <div class="card-header">
+                            <h3>Resource Allocation</h3>
+                        </div>
+                        <div class="resource-items">
+                            <div class="resource-item">
+                                <span class="resource-label">Fire Brigade Units</span>
+                                <span class="resource-value">15/20 Available</span>
+                            </div>
+                            <div class="resource-item">
+                                <span class="resource-label">NDRF Teams</span>
+                                <span class="resource-value">8/12 Available</span>
+                            </div>
+                            <div class="resource-item">
+                                <span class="resource-label">Medical Teams</span>
+                                <span class="resource-value">22/25 Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guidelines & SOS Section -->
+        <section id="guidelines" class="section">
+            <div class="container">
+                <h2>Guidelines & SOS</h2>
+                
+                <div class="guidelines-grid">
+                    <div class="guideline-card">
+                        <div class="card-header">
+                            <h3>Emergency Guidelines</h3>
+                        </div>
+                        <div class="disaster-tabs">
+                            <button class="tab-btn active" data-disaster="flood">Flood</button>
+                            <button class="tab-btn" data-disaster="earthquake">Earthquake</button>
+                            <button class="tab-btn" data-disaster="fire">Fire</button>
+                        </div>
+                        <div class="guidelines-content" id="guidelinesContent">
+                            <!-- Guidelines will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="guideline-card">
+                        <div class="card-header">
+                            <h3>SOS Messaging System</h3>
+                        </div>
+                        <div class="sos-controls">
+                            <button class="btn btn--primary btn--full-width">Send Emergency Alert</button>
+                            <button class="btn btn--secondary btn--full-width">Broadcast Guidelines</button>
+                            <button class="btn btn--outline btn--full-width">Update Helpline Numbers</button>
+                        </div>
+                        <div class="helpline-list">
+                            <div class="helpline-item">
+                                <span class="helpline-label">Fire Emergency</span>
+                                <span class="helpline-number">101</span>
+                            </div>
+                            <div class="helpline-item">
+                                <span class="helpline-label">Police</span>
+                                <span class="helpline-number">100</span>
+                            </div>
+                            <div class="helpline-item">
+                                <span class="helpline-label">Medical Emergency</span>
+                                <span class="helpline-number">102</span>
+                            </div>
+                            <div class="helpline-item">
+                                <span class="helpline-label">Disaster Management</span>
+                                <span class="helpline-number">108</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for detailed views -->
+    <div class="modal hidden" id="detailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Details</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
